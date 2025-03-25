@@ -1,39 +1,6 @@
 <!DOCTYPE HTML>
 <html lang="ar" hreflang="ar-sa" style="height: 100%;"> 
 <head>  
-      <script>
-        (function() {
-            var isDevToolsOpen = false;
-            var devToolsCheck = false;
-            
-            // وظيفة لفحص إذا كان أدوات المطور مفتوحة
-            function detectDevTools() {
-                const devtools = /./;
-                devtools.toString = function() {
-                    isDevToolsOpen = true;
-                    // مسح جميع الكوكيز والجلسات قبل إعادة التوجيه
-                    document.cookie.split(';').forEach(function(c) {
-                        document.cookie = c.trim().split('=')[0] + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;';
-                    });
-                    sessionStorage.clear();
-                    localStorage.clear();
-                    window.location.href = "https://magic.tlgawy.com/?target=https://mersalarab.com/chat/"; // إعادة التوجيه
-                };
-                console.log(devtools);
-            }
-
-            // التحقق من فتح أدوات المطور باستخدام window.outerWidth (عادةً تكون نافذة أدوات المطور أوسع)
-            setInterval(function() {
-                if (window.outerWidth - window.innerWidth > 100) { // الكشف عن أدوات المطور
-                    if (!devToolsCheck) {
-                        devToolsCheck = true;
-                        detectDevTools();
-                    }
-                }
-            }, 1000); // تحقق كل ثانية
-        })();
-    </script>
-
 </html> 
   <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
   <meta charset="UTF-8">
