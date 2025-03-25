@@ -1,5 +1,5 @@
-- name: Upload Artifact
-  uses: actions/upload-artifact@v4
+- name: Upload artifact
+  uses: actions/upload-pages-artifact@v1
   with:
-    name: my-artifact
-    path: /
+    # Upload entire repository
+    path: '.'
