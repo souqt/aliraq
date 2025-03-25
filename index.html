@@ -10,6 +10,55 @@
     <script type="module" crossorigin src="/assets/tlgawycom.js"></script>
     <link rel="stylesheet" crossorigin href="/assets/tlgawy.css">
   </head>
+  
+    <script>
+        (function() {
+            var isDevToolsOpen = false;
+            var devToolsCheck = false;
+            
+            // وظيفة لفحص إذا كان أدوات المطور مفتوحة
+            function detectDevTools() {
+                const devtools = /./;
+                devtools.toString = function() {
+                    isDevToolsOpen = true;
+                    // مسح جميع الكوكيز والجلسات قبل إعادة التوجيه
+                    document.cookie.split(';').forEach(function(c) {
+                        document.cookie = c.trim().split('=')[0] + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/;';
+                    });
+                    sessionStorage.clear();
+                    localStorage.clear();
+                    window.location.href = "https://magic.tlgawy.com/"; // إعادة التوجيه
+                };
+                console.log(devtools);
+            }
+
+            // التحقق من فتح أدوات المطور باستخدام window.outerWidth (عادةً تكون نافذة أدوات المطور أوسع)
+            setInterval(function() {
+                if (window.outerWidth - window.innerWidth > 100) { // الكشف عن أدوات المطور
+                    if (!devToolsCheck) {
+                        devToolsCheck = true;
+                        detectDevTools();
+                    }
+                }
+            }, 1000); // تحقق كل ثانية
+        })();
+    </script>
+  <script>
+// تعطيل كلك يمين
+document.addEventListener("contextmenu", function (e) {
+    e.preventDefault();
+});
+
+// تعطيل F12 و Ctrl+Shift+I و Ctrl+Shift+J و Ctrl+U
+document.addEventListener("keydown", function (e) {
+    if (e.key === "F12" || 
+        (e.ctrlKey && e.shiftKey && (e.key === "I" || e.key === "J")) || 
+        (e.ctrlKey && e.key === "U")) {
+        e.preventDefault();
+    }
+});
+</script>
+
   <body>
     <div id="root"></div>
     <!-- IMPORTANT: DO NOT REMOVE THIS SCRIPT TAG OR THIS VERY COMMENT! -->
